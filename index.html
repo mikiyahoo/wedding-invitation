@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mikias &amp; Lidiya — Wedding Invitation</title>
+  <meta name="description" content="Together with their families, Mikias & Lidiya request the pleasure of your company." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans+Ethiopic:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<!--
+  ============================================================
+  EDIT YOUR WEDDING DETAILS HERE
+  data-wedding-date  : ISO date/time (+03:00 = Ethiopian time) used by the countdown
+  data-venue-query   : venue text, used as the Google Maps fallback search
+  data-venue-map-url : exact Maps link for the venue (optional)
+  Everything else is plain text in the HTML below.
+  ============================================================
+-->
+<body
+  data-wedding-date="2026-11-08T14:00:00+03:00"
+  data-venue-query="Lideta Mekane Yesus Church, Addis Ababa, Ethiopia"
+  data-venue-map-url="https://share.google/jxdyufu8Vt6UDn2dP"
+>
+
+  <!-- clip path used by the envelope flap -->
+  <svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true">
+    <defs>
+      <clipPath id="roundedTriangle" clipPathUnits="objectBoundingBox">
+        <path d="M 0,0 L 1,0 L 1,0.7 Q 0.85,0.76 0.65,0.84 Q 0.5,0.89 0.35,0.84 Q 0.15,0.76 0,0.7 Z" />
+      </clipPath>
+    </defs>
+  </svg>
+
+  <!-- ══════════════════ ENVELOPE / SCROLL REVEAL ══════════════════ -->
+  <div id="sd">
+    <div id="stage">
+      <div id="bg">
+        <div id="bg-parallax-layer" aria-hidden="true">
+          <span class="bg-orb bg-orb--1"></span>
+          <span class="bg-orb bg-orb--2"></span>
+          <span class="bg-orb bg-orb--3"></span>
+        </div>
+        <div class="reveal-inner">
+          <p class="reveal-preline" id="rp">We are getting married</p>
+          <h1 class="reveal-names" id="rn">Mikias <span class="amp">&amp;</span> Lidiya</h1>
+          <p class="reveal-date" id="rd">
+            <span data-date-long>Sunday, November 8, 2026</span>
+            &nbsp;·&nbsp; <span data-venue-name>Lideta Mekane Yesus Church</span>
+          </p>
+        </div>
+      </div>
+
+      <div id="fp">
+        <div id="flap-group">
+          <div class="flap-tip-glow" aria-hidden="true"></div>
+          <div id="flap">
+            <div class="fold-left"></div>
+            <div class="fold-right"></div>
+            <div id="flap-edge" aria-hidden="true"></div>
+            <div id="flap-shimmer" aria-hidden="true"></div>
+          </div>
+
+          <div id="badge">
+            <div class="badge-scroll-label" aria-hidden="true">
+              <svg viewBox="0 0 260 120">
+                <defs><path id="scrollArc" d="M 18,82 A 112,112 0 0,1 242,82" fill="none" /></defs>
+                <path class="badge-scroll-orbit" d="M 18,82 A 112,112 0 0,1 242,82" />
+                <text text-anchor="middle">
+                  <textPath href="#scrollArc" startOffset="50%">SCROLL TO OPEN</textPath>
+                </text>
+              </svg>
+            </div>
+            <div class="badge-notch"></div>
+            <div class="badge-ring-outer"></div>
+            <div class="badge-ring-inner"></div>
+            <span class="mono">M &amp; L</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════ MAIN CONTENT ══════════════════ -->
+  <div class="main-content" id="mainContent">
+
+    <!-- 3D cake -->
+    <div class="cake-stage">
+      <div class="cake-illustration" id="cakeIllustration">
+        <div id="cake3dContainer"></div>
+      </div>
+    </div>
+
+    <!-- Invitation + countdown -->
+    <section class="invitation-countdown" id="invitationSection">
+      <p class="invitation-copy">
+        Together with their families,<br />
+        <strong>Mikias Derej</strong> &amp; <strong>Lidiya Dagne</strong><br />
+        request the pleasure of your company<br />
+        as they exchange vows and celebrate their union.
+      </p>
+      <div class="countdown-wrapper" id="countdown">
+        <div class="countdown-unit"><span class="countdown-num" data-cd="days">00</span><span class="countdown-label">Days</span></div>
+        <div class="countdown-unit"><span class="countdown-num" data-cd="hours">00</span><span class="countdown-label">Hours</span></div>
+        <div class="countdown-unit"><span class="countdown-num" data-cd="minutes">00</span><span class="countdown-label">Minutes</span></div>
+        <div class="countdown-unit"><span class="countdown-num" data-cd="seconds">00</span><span class="countdown-label">Seconds</span></div>
+      </div>
+    </section>
+
+    <!-- Love story -->
+    <section class="love-story" id="loveStory">
+      <div class="section-header"><h2>Our Love Story</h2><span class="ornament-line"></span></div>
+      <div class="timeline">
+        <div class="timeline-item" data-animate>
+          <div class="tl-year">How it began</div>
+          <div class="tl-title">A Hello on Telegram</div>
+          <p class="tl-text">It started with a single message. One hello turned into long conversations that
+            ran late into the night, and somewhere between the typing and the waiting, a name on a
+            screen became the best part of the day.</p>
+        </div>
+        <div class="timeline-item" data-animate>
+          <div class="tl-year">Two years together</div>
+          <div class="tl-title">From Strangers to Sure</div>
+          <p class="tl-text">Two years of shared meals, long walks and ordinary afternoons that never felt
+            ordinary. We learned each other&rsquo;s stories, habits and dreams — and curiosity quietly
+            grew into certainty.</p>
+        </div>
+        <div class="timeline-item" data-animate>
+          <div class="tl-year">The decision</div>
+          <div class="tl-title">Two Families, One Promise</div>
+          <p class="tl-text">We brought our families together, and with their blessing we chose the rest of
+            our lives. What began with one message now becomes a marriage — and we would love for you
+            to be there when it does.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Program -->
+    <section class="day-program" id="dayProgram">
+      <div class="section-header">
+        <h2>The Day&rsquo;s Program</h2>
+        <span class="ornament-line"></span>
+        <p class="section-note">Times are given በኢትዮጵያ አቆጣጠር (Ethiopian local time), with the international clock beside it</p>
+      </div>
+      <div class="program-timeline">
+        <div class="pt-item" data-animate>
+          <div class="pt-text">
+            <span class="pt-time">7:30 <span class="amharic">ሰዓት</span> <span class="pt-time-alt">&middot; 1:30 PM</span></span>
+            <span class="pt-title">Guest Arrival</span>
+            <span class="pt-desc">Guests are welcomed and seated in the sanctuary.</span>
+          </div>
+          <span class="pt-node" aria-hidden="true"></span>
+          <span class="pt-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 42V21a12 12 0 0 1 24 0v21"/><path d="M7 42h34"/><circle cx="30" cy="30" r="1.4"/></svg>
+          </span>
+        </div>
+        <div class="pt-item" data-animate>
+          <div class="pt-text">
+            <span class="pt-time">8:00 <span class="amharic">ሰዓት</span> <span class="pt-time-alt">&middot; 2:00 PM</span></span>
+            <span class="pt-title">Processional</span>
+            <span class="pt-desc">The wedding party enters and the bride walks down the aisle.</span>
+          </div>
+          <span class="pt-node" aria-hidden="true"></span>
+          <span class="pt-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 43V27"/><path d="M24 27c-4 0-7 3-9 6M24 27c4 0 7 3 9 6"/><circle cx="24" cy="17" r="6"/><circle cx="14.5" cy="23" r="4.6"/><circle cx="33.5" cy="23" r="4.6"/></svg>
+          </span>
+        </div>
+        <div class="pt-item" data-animate>
+          <div class="pt-text">
+            <span class="pt-time">8:15 <span class="amharic">ሰዓት</span> <span class="pt-time-alt">&middot; 2:15 PM</span></span>
+            <span class="pt-title">Praise &amp; Worship</span>
+            <span class="pt-desc">Hymns and songs of thanksgiving led by the church choir.</span>
+          </div>
+          <span class="pt-node" aria-hidden="true"></span>
+          <span class="pt-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M19 35V13l16-4v22"/><ellipse cx="15" cy="35" rx="4.4" ry="3.4"/><ellipse cx="31" cy="31" rx="4.4" ry="3.4"/></svg>
+          </span>
+        </div>
+        <div class="pt-item" data-animate>
+          <div class="pt-text">
+            <span class="pt-time">8:45 <span class="amharic">ሰዓት</span> <span class="pt-time-alt">&middot; 2:45 PM</span></span>
+            <span class="pt-title">The Word &amp; Prayer</span>
+            <span class="pt-desc">A message from the Scriptures and a prayer over the couple.</span>
+          </div>
+          <span class="pt-node" aria-hidden="true"></span>
+          <span class="pt-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 16c-3.6-2.8-8.4-4-14-4v22c5.6 0 10.4 1.2 14 4 3.6-2.8 8.4-4 14-4V12c-5.6 0-10.4 1.2-14 4z"/><path d="M24 16v22"/></svg>
+          </span>
+        </div>
+        <div class="pt-item" data-animate>
+          <div class="pt-text">
+            <span class="pt-time">9:15 <span class="amharic">ሰዓት</span> <span class="pt-time-alt">&middot; 3:15 PM</span></span>
+            <span class="pt-title">Vows &amp; Rings</span>
+            <span class="pt-desc">The exchange of vows and rings, and the declaration of marriage.</span>
+          </div>
+          <span class="pt-node" aria-hidden="true"></span>
+          <span class="pt-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="19" cy="29" r="9"/><circle cx="30" cy="29" r="9"/><path d="M24.5 16.5l2.2-3.5h3.6l2.2 3.5"/></svg>
+          </span>
+        </div>
+        <div class="pt-item" data-animate>
+          <div class="pt-text">
+            <span class="pt-time">9:40 <span class="amharic">ሰዓት</span> <span class="pt-time-alt">&middot; 3:40 PM</span></span>
+            <span class="pt-title">Blessing &amp; Signing</span>
+            <span class="pt-desc">The blessing of the union and the signing of the marriage certificate.</span>
+          </div>
+          <span class="pt-node" aria-hidden="true"></span>
+          <span class="pt-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M11 9h20v30H11z"/><path d="M16 18h10M16 24h10M16 30h6"/><path d="M31 35l7.5-7.5 3 3L34 38l-4 1z"/></svg>
+          </span>
+        </div>
+        <div class="pt-item" data-animate>
+          <div class="pt-text">
+            <span class="pt-time">10:00 <span class="amharic">ሰዓት</span> <span class="pt-time-alt">&middot; 4:00 PM</span></span>
+            <span class="pt-title">Recessional &amp; Photographs</span>
+            <span class="pt-desc">The couple leaves the church, followed by photographs with family.</span>
+          </div>
+          <span class="pt-node" aria-hidden="true"></span>
+          <span class="pt-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="17" width="32" height="21" rx="3"/><circle cx="24" cy="27.5" r="6.6"/><path d="M18.5 17l2.4-4.5h6.2L29.5 17"/></svg>
+          </span>
+        </div>
+        <div class="pt-item" data-animate>
+          <div class="pt-text">
+            <span class="pt-time">11:00 <span class="amharic">ሰዓት</span> <span class="pt-time-alt">&middot; 5:00 PM</span></span>
+            <span class="pt-title">Cake Cutting</span>
+            <span class="pt-desc">The cutting of the wedding cake and a toast to the newly married couple.</span>
+          </div>
+          <span class="pt-node" aria-hidden="true"></span>
+          <span class="pt-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M11 41V29h26v12z"/><path d="M15.5 29v-8h17v8"/><path d="M24 21v-5"/><path d="M24 16c1.6-1.4 1.6-3 0-4.2-1.6 1.2-1.6 2.8 0 4.2z"/><path d="M11 35h26"/></svg>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Venue & details -->
+    <section class="event-details" id="eventDetails">
+      <div class="section-header"><h2>Venue &amp; Details</h2><span class="ornament-line"></span></div>
+      <div class="details-grid">
+        <div class="detail-card">
+          <h4>Location</h4>
+          <p><span data-venue-name>Lideta Mekane Yesus Church</span><br />
+            <span class="amharic">ልደታ መካነ ኢየሱስ ቤ/ክ</span><br />
+            Addis Ababa, Ethiopia</p>
+        </div>
+        <div class="detail-card">
+          <h4>Date &amp; Time</h4>
+          <p><span class="amharic">እሁድ, ጥቅምት 29 2019 ኢ.አ</span><br />
+            <span data-date-long>Sunday, November 8, 2026</span> G.C<br />
+            <span class="amharic">8:00 ሰዓት በኢትዮጵያ አቆጣጠር</span> &middot; 2:00 PM</p>
+        </div>
+      </div>
+
+      <div class="map-area" id="mapArea" role="button" tabindex="0" aria-label="Open venue in Google Maps">
+        <div class="map-pin">
+          <svg viewBox="0 0 44 56" width="36" height="46" aria-hidden="true">
+            <path d="M22 0C10 0 0 9.5 0 22c0 16 22 34 22 34s22-18 22-34C44 9.5 34 0 22 0z" fill="#bf8f38" stroke="#8b6f3a" stroke-width="2" />
+            <circle cx="22" cy="20" r="8" fill="white" />
+          </svg>
+        </div>
+        <div class="map-address-overlay" data-venue-name>Lideta Mekane Yesus Church</div>
+      </div>
+
+      <div class="action-buttons">
+        <a href="#" class="btn btn-primary" id="mapsLink" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><circle cx="12" cy="10" r="4" /><path d="M12 2v4M12 14v8M2 10h4M18 10h4" /></svg>
+          Open in Maps
+        </a>
+        <a href="#" class="btn btn-outline" id="calendarLink" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+          Add to Calendar
+        </a>
+      </div>
+    </section>
+
+    <!-- Gift registry -->
+    <section class="gift-registry" id="giftRegistry">
+      <div class="gift-heading">
+        <div class="section-header"><h2>Gift Registry</h2></div>
+        <div class="gift-ring-stage" data-animate aria-hidden="true">
+          <svg class="wedding-ring wedding-ring-left" viewBox="0 0 120 120">
+            <ellipse cx="60" cy="66" rx="34" ry="42" />
+            <ellipse class="ring-highlight" cx="54" cy="58" rx="25" ry="32" />
+            <path class="ring-shadow" d="M34 86c12 13 40 17 56-7" fill="none" />
+            <circle class="ring-gem" cx="60" cy="18" r="8" />
+          </svg>
+          <svg class="wedding-ring wedding-ring-right" viewBox="0 0 120 120">
+            <ellipse cx="60" cy="66" rx="34" ry="42" />
+            <ellipse class="ring-highlight" cx="66" cy="58" rx="25" ry="32" />
+            <path class="ring-shadow" d="M30 80c16 22 52 20 62-4" fill="none" />
+            <circle class="ring-gem" cx="60" cy="18" r="8" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="accordion" id="giftAccordion">
+        <div class="accordion-header" id="accordionHeader" role="button" tabindex="0" aria-expanded="false">
+          <span>Contribution</span><span class="accordion-arrow">&#9662;</span>
+        </div>
+        <div class="accordion-body">
+          <p class="accordion-copy">Your presence is the greatest gift. Should you wish to contribute, details are below.</p>
+          <button class="btn-iban" id="ibanToggle" type="button">Show IBAN</button>
+          <div class="iban-reveal-area" id="ibanArea">
+            FR76 3000 4000 0100 0000 1234 567<br />BIC: BNPAFRPPXXX
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="rsvp-section" id="rsvpSection">
+      <div class="section-header"><h2>RSVP</h2><span class="ornament-line"></span></div>
+      <p class="rsvp-deadline">Kindly respond by <span data-rsvp-deadline>November 12, 2026</span></p>
+
+      <form class="rsvp-form" id="rsvpForm" novalidate>
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Your full name" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number (optional)</label>
+          <input type="tel" id="phone" name="phone" placeholder="Your phone number" />
+        </div>
+        <div class="form-group">
+          <label>Attendance</label>
+          <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="attendance" value="accept" checked />Joyfully Accept</label>
+            <label class="radio-option"><input type="radio" name="attendance" value="decline" />Regretfully Decline</label>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit">Send Response</button>
+        <p class="form-feedback" id="formFeedback"></p>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <p>Radiance Event Planning &bull; Addis Ababa, Ethiopia &bull; 2026 &bull; Crafted with love</p>
+    </footer>
+  </div>
+
+  <canvas id="confetti-canvas"></canvas>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+  <script src="js/cake3d.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
