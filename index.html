@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans+Ethiopic:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css?v=5" />
 </head>
 
 <!--
@@ -33,6 +33,12 @@
       <clipPath id="roundedTriangle" clipPathUnits="objectBoundingBox">
         <path d="M 0,0 L 1,0 L 1,0.7 Q 0.85,0.76 0.65,0.84 Q 0.5,0.89 0.35,0.84 Q 0.15,0.76 0,0.7 Z" />
       </clipPath>
+
+      <!-- one leaf, reused along every sprig -->
+      <g id="leaf">
+        <path d="M0 0 C 5 -10, 17 -13, 25 -5 C 17 4, 5 7, 0 0 Z" fill="currentColor" />
+      </g>
+
     </defs>
   </svg>
 
@@ -46,40 +52,169 @@
           <span class="bg-orb bg-orb--3"></span>
         </div>
         <div class="reveal-inner">
-          <p class="reveal-preline" id="rp">We are getting married</p>
-          <h1 class="reveal-names" id="rn">Mikias <span class="amp">&amp;</span> Lidiya</h1>
-          <p class="reveal-date" id="rd">
-            <span data-date-long>Sunday, November 8, 2026</span>
-            &nbsp;·&nbsp; <span data-venue-name>Lideta Mekane Yesus Church</span>
+          <p class="reveal-preline" id="rp">
+            We are getting married
+            <span class="rule-diamond" aria-hidden="true"><i></i><b></b><i></i></span>
           </p>
+
+          <div class="reveal-crest" id="rn">
+            <div class="reveal-heart">
+            <svg class="heart-crest" viewBox="0 0 600 460" aria-hidden="true">
+              <defs>
+                <!-- the arcs are open at the bottom, so the mask closes them into
+                     a full heart for the photograph to sit in -->
+                <clipPath id="heartPhoto">
+                  <path d="M82 252 C 56 164, 86 84, 150 56 C 204 32, 266 62, 300 118
+                           C 334 62, 396 32, 450 56 C 514 84, 544 164, 518 252
+                           C 496 322, 392 378, 300 432 C 208 378, 104 322, 82 252 Z" />
+                </clipPath>
+                <filter id="fogBlur" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="26" />
+                </filter>
+                <linearGradient id="veilFade" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset=".58" stop-color="#f8edda" stop-opacity="0" />
+                  <stop offset=".8" stop-color="#f8edda" stop-opacity=".6" />
+                  <stop offset="1" stop-color="#f8edda" stop-opacity="1" />
+                </linearGradient>
+              </defs>
+              <image class="crest-photo" href="images/Lidu%20%26%20Miki.jpg"
+                x="-20" y="-56" width="640" height="640"
+                preserveAspectRatio="xMidYMin slice" clip-path="url(#heartPhoto)" />
+              <rect x="0" y="0" width="600" height="460" fill="url(#veilFade)" clip-path="url(#heartPhoto)" />
+              <g class="crest-fog" clip-path="url(#heartPhoto)" filter="url(#fogBlur)">
+                <ellipse cx="220" cy="356" rx="150" ry="52" fill="#f8edda" />
+                <ellipse cx="380" cy="382" rx="170" ry="46" fill="#f8edda" />
+                <ellipse cx="300" cy="332" rx="120" ry="38" fill="#f8edda" />
+              </g>
+              <g class="crest-heart">
+                <!-- both lobes in a single continuous stroke, meeting in one clean dip -->
+                <path d="M82 252 C 56 164, 86 84, 150 56 C 204 32, 266 62, 300 118 C 334 62, 396 32, 450 56 C 514 84, 544 164, 518 252" />
+              </g>
+              <path class="crest-spark" d="M300 30 L308 48 L326 56 L308 64 L300 82 L292 64 L274 56 L292 48 Z" />
+              <g class="crest-sprig">
+                <path class="sprig-stem" d="M280 434 C 218 424, 152 388, 84 296" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <g transform="translate(266,431) rotate(150) scale(1.18)"><use href="#leaf" style="animation-delay:260ms" /></g>
+                <g transform="translate(255,427) rotate(268) scale(1.18)"><use href="#leaf" style="animation-delay:355ms" /></g>
+                <g transform="translate(243,422) rotate(152) scale(1.357)"><use href="#leaf" style="animation-delay:450ms" /></g>
+                <g transform="translate(231,415) rotate(270) scale(1.357)"><use href="#leaf" style="animation-delay:545ms" /></g>
+                <g transform="translate(217,407) rotate(154) scale(1.416)"><use href="#leaf" style="animation-delay:640ms" /></g>
+                <g transform="translate(203,398) rotate(272) scale(1.357)"><use href="#leaf" style="animation-delay:735ms" /></g>
+                <g transform="translate(187,386) rotate(156) scale(1.298)"><use href="#leaf" style="animation-delay:830ms" /></g>
+                <g transform="translate(171,372) rotate(274) scale(1.239)"><use href="#leaf" style="animation-delay:925ms" /></g>
+                <g transform="translate(153,356) rotate(158) scale(1.121)"><use href="#leaf" style="animation-delay:1020ms" /></g>
+                <g transform="translate(135,339) rotate(276) scale(1.062)"><use href="#leaf" style="animation-delay:1115ms" /></g>
+                <g transform="translate(117,322) rotate(160) scale(0.968)"><use href="#leaf" style="animation-delay:1210ms" /></g>
+                <g transform="translate(100,306) rotate(278) scale(0.873)"><use href="#leaf" style="animation-delay:1305ms" /></g>
+                <g transform="translate(88,298) rotate(212) scale(0.779)"><use href="#leaf" style="animation-delay:1400ms" /></g>
+              </g>
+              <g class="crest-sprig" transform="translate(600,0) scale(-1,1)">
+                <path class="sprig-stem" d="M280 434 C 218 424, 152 388, 84 296" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <g transform="translate(266,431) rotate(150) scale(1.18)"><use href="#leaf" style="animation-delay:260ms" /></g>
+                <g transform="translate(255,427) rotate(268) scale(1.18)"><use href="#leaf" style="animation-delay:355ms" /></g>
+                <g transform="translate(243,422) rotate(152) scale(1.357)"><use href="#leaf" style="animation-delay:450ms" /></g>
+                <g transform="translate(231,415) rotate(270) scale(1.357)"><use href="#leaf" style="animation-delay:545ms" /></g>
+                <g transform="translate(217,407) rotate(154) scale(1.416)"><use href="#leaf" style="animation-delay:640ms" /></g>
+                <g transform="translate(203,398) rotate(272) scale(1.357)"><use href="#leaf" style="animation-delay:735ms" /></g>
+                <g transform="translate(187,386) rotate(156) scale(1.298)"><use href="#leaf" style="animation-delay:830ms" /></g>
+                <g transform="translate(171,372) rotate(274) scale(1.239)"><use href="#leaf" style="animation-delay:925ms" /></g>
+                <g transform="translate(153,356) rotate(158) scale(1.121)"><use href="#leaf" style="animation-delay:1020ms" /></g>
+                <g transform="translate(135,339) rotate(276) scale(1.062)"><use href="#leaf" style="animation-delay:1115ms" /></g>
+                <g transform="translate(117,322) rotate(160) scale(0.968)"><use href="#leaf" style="animation-delay:1210ms" /></g>
+                <g transform="translate(100,306) rotate(278) scale(0.873)"><use href="#leaf" style="animation-delay:1305ms" /></g>
+                <g transform="translate(88,298) rotate(212) scale(0.779)"><use href="#leaf" style="animation-delay:1400ms" /></g>
+              </g>
+            </svg>
+
+            </div>
+
+            <h1 class="cover-names">
+              <span class="sr-only" data-couple-names>Mikias &amp; Lidiya</span>
+              <span class="heart-name">
+                <svg class="name-ink" viewBox="-42 -1000 2845 1200" aria-hidden="true">
+                  <defs>
+                    <mask id="pen1" maskUnits="userSpaceOnUse" x="-974" y="-1782" width="4708" height="3063">
+                      <path class="pen" d="M-1100 -410 C 91 -470, 884 -290, 1678 -370 S 3067 -460, 3861 -310" fill="none" stroke="#fff" stroke-width="2143" stroke-linecap="round" stroke-linejoin="round" />
+                    </mask>
+                  </defs>
+                  <g transform="scale(1,-1)" mask="url(#pen1)">
+                    <path fill="currentColor" d="M1365 -115Q1350 -113 1324.0 -107.5Q1298 -102 1271.0 -86.0Q1244 -70 1225.0 -37.5Q1206 -5 1206 49Q1206 111 1231.5 185.5Q1257 260 1294.0 341.0Q1331 422 1365 501Q1392 564 1392 597Q1392 630 1367 630Q1339 630 1283.5 585.5Q1228 541 1155 451Q1136 427 1106.0 384.5Q1076 342 1042.0 290.5Q1008 239 975.5 186.5Q943 134 918.5 90.0Q894 46 883 20Q870 -11 853.0 -22.5Q836 -34 821 -34Q808 -34 799 -27Q789 -20 789 -10Q789 -4 792 0Q798 12 822.0 55.0Q846 98 878.0 169.0Q910 240 939 334Q948 363 957.5 401.0Q967 439 975.0 479.5Q983 520 988.5 555.5Q994 591 994 613Q994 648 982.0 664.5Q970 681 950 681Q928 681 900.0 662.0Q872 643 843 607Q793 544 755.0 490.5Q717 437 685.5 384.0Q654 331 623.5 271.0Q593 211 559.0 136.5Q525 62 481 -36Q474 -52 457.5 -59.0Q441 -66 427 -66Q413 -66 404.0 -60.0Q395 -54 398 -43Q420 -8 447.0 44.5Q474 97 502.0 161.0Q530 225 556.0 294.0Q582 363 602.5 429.0Q623 495 635.0 553.0Q647 611 647 652Q647 729 614.5 762.0Q582 795 531 795Q486 795 432.0 773.0Q378 751 323.5 713.0Q269 675 221 627Q152 558 112.5 477.0Q73 396 73 313Q73 257 94.0 218.0Q115 179 149.5 159.0Q184 139 226 139Q269 139 306.5 160.5Q344 182 372.5 216.5Q401 251 417.0 289.5Q433 328 433 362Q433 391 417.0 410.0Q401 429 366 429Q362 429 357.5 428.5Q353 428 348 428H345Q338 428 332.0 430.5Q326 433 326 437Q326 441 336.5 446.0Q347 451 375 451Q420 451 442.5 424.5Q465 398 465 357Q465 317 444.5 275.0Q424 233 389.0 197.0Q354 161 310.5 139.0Q267 117 221 117Q167 117 120.5 142.0Q74 167 46.0 214.5Q18 262 18 328Q18 391 44.0 452.5Q70 514 111.5 568.5Q153 623 200 665Q252 712 310.0 745.5Q368 779 425.5 797.5Q483 816 533 816Q607 816 655.5 772.0Q704 728 704 630Q704 590 693.0 538.5Q682 487 667.0 435.5Q652 384 638 344H640Q676 409 704.5 455.5Q733 502 762.0 542.0Q791 582 827 626Q858 663 898.0 685.0Q938 707 975 707Q1008 707 1031.0 685.0Q1054 663 1054 610Q1054 604 1054.0 600.0Q1054 596 1053 588Q1044 492 1015.0 399.5Q986 307 955 213Q986 261 1039.0 335.0Q1092 409 1155 488Q1232 584 1298.0 632.0Q1364 680 1407 680Q1461 680 1461 614Q1461 589 1451.5 554.0Q1442 519 1422 480Q1400 436 1373.5 378.5Q1347 321 1323.0 258.0Q1299 195 1283.5 134.5Q1268 74 1268 23Q1268 -32 1293.5 -65.5Q1319 -99 1382 -99H1388Q1403 -99 1403 -105Q1403 -109 1393.0 -113.0Q1383 -117 1365 -115Z M1423 0Q1386 0 1371.0 21.5Q1356 43 1356 71Q1356 86 1359.5 101.5Q1363 117 1368 130L1435 301Q1438 309 1438 315Q1438 325 1433.0 332.5Q1428 340 1426 343L1481 345Q1496 346 1502.5 341.5Q1509 337 1509 331Q1509 325 1502 309Q1492 285 1475.0 249.0Q1458 213 1441.5 175.0Q1425 137 1413.5 104.0Q1402 71 1402 53Q1402 40 1408.5 31.0Q1415 22 1431 22Q1452 22 1472.5 38.5Q1493 55 1511.0 81.0Q1529 107 1544.5 137.0Q1560 167 1571 193Q1583 193 1583 184Q1573 159 1557.0 127.0Q1541 95 1520.5 66.5Q1500 38 1475.5 19.0Q1451 0 1423 0ZM1512 407Q1499 407 1489.5 417.0Q1480 427 1480 441Q1480 458 1494.0 471.5Q1508 485 1525 485Q1539 485 1549.0 476.0Q1559 467 1559 453Q1559 435 1545.0 421.0Q1531 407 1512 407Z M1745 -7Q1717 -4 1699.0 14.5Q1681 33 1673.0 58.0Q1665 83 1665 104Q1665 144 1683.0 168.5Q1701 193 1716 194Q1732 193 1755.0 201.5Q1778 210 1795 225Q1824 248 1824 272Q1824 297 1795 297Q1779 297 1754.5 286.0Q1730 275 1698 248Q1658 214 1615 157Q1609 144 1601.0 118.5Q1593 93 1587.5 66.0Q1582 39 1582 20Q1582 5 1587 0H1524Q1513 0 1513 9Q1513 12 1514.0 14.0Q1515 16 1516 22Q1530 74 1549.5 114.0Q1569 154 1582 184Q1573 181 1572.0 185.5Q1571 190 1571 193Q1578 209 1594.5 244.5Q1611 280 1633.5 326.5Q1656 373 1682.0 424.0Q1708 475 1734 522Q1760 570 1776.5 590.0Q1793 610 1817 610Q1826 610 1838.5 607.0Q1851 604 1861 606Q1839 587 1806.0 536.5Q1773 486 1736.0 419.0Q1699 352 1665 282Q1655 262 1646.0 240.0Q1637 218 1629 196Q1650 222 1677.0 250.0Q1704 278 1733.5 301.5Q1763 325 1792 336Q1825 348 1847 348Q1870 348 1880.5 337.0Q1891 326 1891 309Q1891 290 1876.0 263.5Q1861 237 1835 218Q1813 203 1789.0 192.0Q1765 181 1732 178Q1726 164 1723.5 149.5Q1721 135 1721 121Q1721 82 1739.0 52.5Q1757 23 1786 23Q1800 23 1816.5 31.0Q1833 39 1851 58Q1871 78 1891.0 113.5Q1911 149 1931 193Q1943 193 1943 184Q1907 97 1873.0 55.0Q1839 13 1807.5 1.5Q1776 -10 1745 -7Z M1959 0Q1922 0 1907.0 21.5Q1892 43 1892 71Q1892 86 1895.5 101.5Q1899 117 1904 130L1971 301Q1974 309 1974 315Q1974 325 1969.0 332.5Q1964 340 1962 343L2017 345Q2032 346 2038.5 341.5Q2045 337 2045 331Q2045 325 2038 309Q2028 285 2011.0 249.0Q1994 213 1977.5 175.0Q1961 137 1949.5 104.0Q1938 71 1938 53Q1938 40 1944.5 31.0Q1951 22 1967 22Q1988 22 2008.5 38.5Q2029 55 2047.0 81.0Q2065 107 2080.5 137.0Q2096 167 2107 193Q2119 193 2119 184Q2109 159 2093.0 127.0Q2077 95 2056.5 66.5Q2036 38 2011.5 19.0Q1987 0 1959 0ZM2048 407Q2035 407 2025.5 417.0Q2016 427 2016 441Q2016 458 2030.0 471.5Q2044 485 2061 485Q2075 485 2085.0 476.0Q2095 467 2095 453Q2095 435 2081.0 421.0Q2067 407 2048 407Z M2324 -3Q2301 -3 2283.5 10.0Q2266 23 2266 63Q2266 80 2268.5 95.0Q2271 110 2275 127Q2266 112 2250.0 90.0Q2234 68 2214.5 47.0Q2195 26 2174.5 12.0Q2154 -2 2136 -2Q2110 -2 2094.0 21.5Q2078 45 2078 83Q2078 124 2097.0 171.0Q2116 218 2149.0 261.0Q2182 304 2225.0 331.0Q2268 358 2315 358Q2338 358 2359.0 350.5Q2380 343 2396 326Q2403 319 2403 310Q2403 304 2398.0 300.0Q2393 296 2385 298Q2374 333 2338 333Q2321 333 2299 322Q2272 308 2241.5 277.5Q2211 247 2184.5 208.5Q2158 170 2141.0 131.0Q2124 92 2124 60Q2124 27 2149 27Q2171 27 2194.5 48.0Q2218 69 2239.5 100.5Q2261 132 2279.0 163.0Q2297 194 2307 213Q2322 240 2335.0 258.0Q2348 276 2372 276Q2383 276 2394.0 273.0Q2405 270 2417 272Q2387 242 2364.5 201.0Q2342 160 2330.0 120.5Q2318 81 2318 54Q2318 24 2338 24Q2354 24 2372.5 42.0Q2391 60 2408.5 87.5Q2426 115 2441.0 143.5Q2456 172 2465 193Q2470 193 2473.5 192.0Q2477 191 2477 184Q2476 180 2473.5 175.5Q2471 171 2466 160Q2458 144 2444.0 117.0Q2430 90 2411.0 62.5Q2392 35 2370.0 16.0Q2348 -3 2324 -3Z M2486 -4Q2445 -4 2419.5 21.5Q2394 47 2394 75Q2394 98 2405.5 117.5Q2417 137 2436 137L2437 139Q2459 179 2479.5 220.5Q2500 262 2525 309Q2546 348 2570.5 373.0Q2595 398 2628 398Q2636 398 2650.0 394.5Q2664 391 2664 380Q2664 372 2655 372Q2648 372 2639.5 376.0Q2631 380 2626 380Q2607 380 2594.0 358.0Q2581 336 2581 311Q2581 284 2590.0 262.5Q2599 241 2611.0 221.0Q2623 201 2632.0 180.5Q2641 160 2641 136Q2641 88 2622.5 58.5Q2604 29 2574 14H2575Q2628 14 2662.5 63.5Q2697 113 2731 193Q2743 193 2743 184Q2724 139 2701.0 96.0Q2678 53 2647.0 25.0Q2616 -3 2571 -3Q2552 -3 2536 1Q2513 -4 2486 -4ZM2471 102Q2471 78 2482.0 56.0Q2493 34 2522 23Q2548 38 2562.5 69.5Q2577 101 2577 135Q2577 163 2571.0 192.0Q2565 221 2558.5 249.0Q2552 277 2552 299Q2552 306 2552.5 311.5Q2553 317 2554 322Q2536 295 2517.5 259.0Q2499 223 2482.0 190.0Q2465 157 2451 136Q2471 133 2471 102ZM2438 52Q2438 36 2449.0 24.0Q2460 12 2482 12Q2492 12 2501 14Q2480 27 2467.5 47.0Q2455 67 2455 93Q2446 83 2442.0 72.5Q2438 62 2438 52Z" />
+                  </g>
+                </svg>
+              </span>
+              <span class="heart-amp" aria-hidden="true"><i></i>&amp;<i></i></span>
+              <span class="heart-name">
+                <svg class="name-ink" viewBox="-63 -1000 2373 1200" aria-hidden="true">
+                  <defs>
+                    <mask id="pen2" maskUnits="userSpaceOnUse" x="-1173" y="-1960" width="4593" height="3420">
+                      <path class="pen" d="M-1335 -296 C -155 -356, 632 -176, 1419 -256 S 2795 -346, 3582 -196" fill="none" stroke="#fff" stroke-width="2553" stroke-linecap="round" stroke-linejoin="round" />
+                    </mask>
+                  </defs>
+                  <g transform="scale(1,-1)" mask="url(#pen2)">
+                    <path fill="currentColor" d="M799 -311Q789 -311 786.0 -307.5Q783 -304 783 -300Q801 -297 818.0 -273.5Q835 -250 835 -219Q835 -170 803.0 -124.5Q771 -79 713.0 -41.0Q655 -3 577.5 24.5Q500 52 408 65Q374 17 331.5 -23.5Q289 -64 237.5 -88.5Q186 -113 126 -113Q63 -113 30.0 -84.0Q-3 -55 -3 -17Q-3 18 25.5 53.5Q54 89 112.5 112.5Q171 136 261 136Q330 136 401 124Q426 168 446.0 212.0Q466 256 481 295Q382 299 325.0 325.5Q268 352 244.0 392.0Q220 432 220 474Q220 527 252.0 574.5Q284 622 339.0 652.0Q394 682 462 682Q470 682 472.0 676.0Q474 670 474 666Q436 666 400.5 649.0Q365 632 337.0 603.5Q309 575 292.5 540.0Q276 505 276 468Q276 432 295.0 397.5Q314 363 360.0 340.0Q406 317 489 315Q498 338 504.5 357.5Q511 377 516 391Q540 463 567.5 534.0Q595 605 630.5 663.0Q666 721 715.0 756.0Q764 791 832 791Q876 791 900.5 766.0Q925 741 925 697Q925 654 905.0 602.5Q885 551 849.0 500.0Q813 449 764.0 405.0Q715 361 657.0 332.0Q599 303 535 296Q520 264 497.0 215.5Q474 167 442 116Q529 96 606.5 62.0Q684 28 743.5 -15.5Q803 -59 837.0 -108.5Q871 -158 871 -207Q871 -251 849.0 -281.0Q827 -311 799 -311ZM832 740Q789 740 751.0 702.5Q713 665 678.5 603.5Q644 542 611.0 467.0Q578 392 545 318Q604 326 655.0 354.0Q706 382 748.0 422.5Q790 463 820.0 509.0Q850 555 866.0 599.5Q882 644 882 679Q882 707 870.0 723.5Q858 740 832 740ZM22 -31Q22 -56 49.0 -74.5Q76 -93 126 -93Q200 -93 260.0 -45.5Q320 2 367 70Q314 75 261 75Q179 75 126.0 58.5Q73 42 47.5 17.5Q22 -7 22 -31Z M803 0Q766 0 751.0 21.5Q736 43 736 71Q736 86 739.5 101.5Q743 117 748 130L815 301Q818 309 818 315Q818 325 813.0 332.5Q808 340 806 343L861 345Q876 346 882.5 341.5Q889 337 889 331Q889 325 882 309Q872 285 855.0 249.0Q838 213 821.5 175.0Q805 137 793.5 104.0Q782 71 782 53Q782 40 788.5 31.0Q795 22 811 22Q832 22 852.5 38.5Q873 55 891.0 81.0Q909 107 924.5 137.0Q940 167 951 193Q963 193 963 184Q953 159 937.0 127.0Q921 95 900.5 66.5Q880 38 855.5 19.0Q831 0 803 0ZM892 407Q879 407 869.5 417.0Q860 427 860 441Q860 458 874.0 471.5Q888 485 905 485Q919 485 929.0 476.0Q939 467 939 453Q939 435 925.0 421.0Q911 407 892 407Z M1180 0Q1146 0 1130.0 23.0Q1114 46 1114 77Q1114 86 1115.0 95.5Q1116 105 1119 115Q1105 93 1086.5 66.5Q1068 40 1044.5 20.5Q1021 1 992 1Q979 1 962.5 7.0Q946 13 933.5 30.0Q921 47 921 80Q921 123 940.0 171.0Q959 219 992.0 261.5Q1025 304 1067.0 330.5Q1109 357 1154 357Q1190 357 1222 338Q1237 366 1254.0 400.5Q1271 435 1288.0 469.0Q1305 503 1318.0 531.5Q1331 560 1338 575Q1353 610 1366.5 619.5Q1380 629 1399 629Q1410 629 1423.5 626.5Q1437 624 1450 625Q1445 620 1427.0 592.0Q1409 564 1383.0 519.5Q1357 475 1327.5 422.0Q1298 369 1269.5 313.5Q1241 258 1217.0 207.0Q1193 156 1179.0 117.0Q1165 78 1165 58Q1165 45 1171.0 35.5Q1177 26 1191 26Q1210 26 1230.0 45.0Q1250 64 1268.5 92.5Q1287 121 1301.5 148.5Q1316 176 1323 193Q1335 193 1335 184Q1326 163 1311.0 132.0Q1296 101 1276.0 71.0Q1256 41 1231.5 20.5Q1207 0 1180 0ZM999 30Q1013 30 1034.0 45.5Q1055 61 1079 95Q1107 135 1143.0 195.0Q1179 255 1214 322Q1207 328 1199.0 331.0Q1191 334 1177 334Q1154 334 1126.5 314.5Q1099 295 1071.5 264.0Q1044 233 1021.5 197.0Q999 161 985.5 127.5Q972 94 972 70Q972 30 999 30Z M1351 0Q1314 0 1299.0 21.5Q1284 43 1284 71Q1284 86 1287.5 101.5Q1291 117 1296 130L1363 301Q1366 309 1366 315Q1366 325 1361.0 332.5Q1356 340 1354 343L1409 345Q1424 346 1430.5 341.5Q1437 337 1437 331Q1437 325 1430 309Q1420 285 1403.0 249.0Q1386 213 1369.5 175.0Q1353 137 1341.5 104.0Q1330 71 1330 53Q1330 40 1336.5 31.0Q1343 22 1359 22Q1380 22 1400.5 38.5Q1421 55 1439.0 81.0Q1457 107 1472.5 137.0Q1488 167 1499 193Q1511 193 1511 184Q1501 159 1485.0 127.0Q1469 95 1448.5 66.5Q1428 38 1403.5 19.0Q1379 0 1351 0ZM1440 407Q1427 407 1417.5 417.0Q1408 427 1408 441Q1408 458 1422.0 471.5Q1436 485 1453 485Q1467 485 1477.0 476.0Q1487 467 1487 453Q1487 435 1473.0 421.0Q1459 407 1440 407Z M1361 -319Q1309 -319 1287.0 -298.5Q1265 -278 1265 -250Q1265 -207 1296.5 -170.5Q1328 -134 1374 -112Q1426 -88 1492.5 -73.0Q1559 -58 1620 -40Q1639 -7 1655.0 35.5Q1671 78 1684.0 118.5Q1697 159 1705 185Q1693 163 1674.5 131.5Q1656 100 1633.0 70.0Q1610 40 1583.5 20.0Q1557 0 1528 0Q1517 0 1501.5 5.0Q1486 10 1474.5 23.5Q1463 37 1463 64Q1463 90 1479.0 121.5Q1495 153 1511 184Q1506 184 1502.5 185.0Q1499 186 1499 193Q1502 199 1511.0 219.0Q1520 239 1531.5 263.0Q1543 287 1552 305Q1563 328 1576.5 337.0Q1590 346 1603 346H1665Q1658 340 1647.5 332.5Q1637 325 1628 310Q1601 264 1581.0 221.5Q1561 179 1538 131Q1527 108 1522.0 89.0Q1517 70 1517 56Q1517 23 1539 23Q1563 23 1597 62Q1625 95 1653.5 140.5Q1682 186 1708.5 234.5Q1735 283 1755 324Q1766 346 1794 346H1849Q1820 326 1804.5 294.0Q1789 262 1770 212Q1749 157 1730.0 98.0Q1711 39 1688 -23Q1737 -6 1770.0 21.0Q1803 48 1828.5 90.5Q1854 133 1880 193Q1892 193 1892 184Q1870 138 1852.0 103.0Q1834 68 1812.0 41.5Q1790 15 1757.0 -7.5Q1724 -30 1672 -51Q1648 -94 1617.5 -140.5Q1587 -187 1548.5 -227.5Q1510 -268 1463.5 -293.5Q1417 -319 1361 -319ZM1337 -299Q1370 -299 1405.0 -279.0Q1440 -259 1473.0 -228.5Q1506 -198 1533.5 -166.5Q1561 -135 1578 -111Q1583 -104 1589.0 -93.0Q1595 -82 1601 -72Q1552 -85 1493.5 -100.5Q1435 -116 1392 -135Q1344 -155 1316.5 -192.0Q1289 -229 1289 -258Q1289 -276 1300.5 -287.5Q1312 -299 1337 -299Z M2097 -3Q2074 -3 2056.5 10.0Q2039 23 2039 63Q2039 80 2041.5 95.0Q2044 110 2048 127Q2039 112 2023.0 90.0Q2007 68 1987.5 47.0Q1968 26 1947.5 12.0Q1927 -2 1909 -2Q1883 -2 1867.0 21.5Q1851 45 1851 83Q1851 124 1870.0 171.0Q1889 218 1922.0 261.0Q1955 304 1998.0 331.0Q2041 358 2088 358Q2111 358 2132.0 350.5Q2153 343 2169 326Q2176 319 2176 310Q2176 304 2171.0 300.0Q2166 296 2158 298Q2147 333 2111 333Q2094 333 2072 322Q2045 308 2014.5 277.5Q1984 247 1957.5 208.5Q1931 170 1914.0 131.0Q1897 92 1897 60Q1897 27 1922 27Q1944 27 1967.5 48.0Q1991 69 2012.5 100.5Q2034 132 2052.0 163.0Q2070 194 2080 213Q2095 240 2108.0 258.0Q2121 276 2145 276Q2156 276 2167.0 273.0Q2178 270 2190 272Q2160 242 2137.5 201.0Q2115 160 2103.0 120.5Q2091 81 2091 54Q2091 24 2111 24Q2127 24 2145.5 42.0Q2164 60 2181.5 87.5Q2199 115 2214.0 143.5Q2229 172 2238 193Q2243 193 2246.5 192.0Q2250 191 2250 184Q2249 180 2246.5 175.5Q2244 171 2239 160Q2231 144 2217.0 117.0Q2203 90 2184.0 62.5Q2165 35 2143.0 16.0Q2121 -3 2097 -3Z" />
+                  </g>
+                </svg>
+              </span>
+            </h1>
+          </div>
+
+          <div class="cover-meta" id="rd">
+            <p class="cover-date" data-date-long>Sunday, November 8, 2026</p>
+            <span class="rule-diamond" aria-hidden="true"><i></i><b></b><i></i></span>
+            <span class="cover-scroll" aria-hidden="true">
+              <svg viewBox="0 0 12 34"><path d="M6 0v28M1.5 23L6 29.5 10.5 23" /></svg>
+            </span>
+          </div>
+
         </div>
+
       </div>
 
       <div id="fp">
-        <div id="flap-group">
-          <div class="flap-tip-glow" aria-hidden="true"></div>
-          <div id="flap">
-            <div class="fold-left"></div>
-            <div class="fold-right"></div>
-            <div id="flap-edge" aria-hidden="true"></div>
-            <div id="flap-shimmer" aria-hidden="true"></div>
+        <svg width="0" height="0" aria-hidden="true">
+          <defs>
+            <linearGradient id="flapGold" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ecd398" />
+              <stop offset=".45" stop-color="#bf8f38" />
+              <stop offset="1" stop-color="#e3c78d" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <div id="doors">
+          <div class="flap flap--top">
+            <span class="flap-shade" aria-hidden="true"></span>
+            <svg class="flap-edge" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 0 L50 50 L100 0" fill="none" stroke="url(#flapGold)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+            </svg>
+          </div>
+          <div class="flap flap--bottom">
+            <span class="flap-shade" aria-hidden="true"></span>
+            <svg class="flap-edge" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 100 L50 50 L100 100" fill="none" stroke="url(#flapGold)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+            </svg>
+          </div>
+          <div class="flap flap--left">
+            <span class="flap-shade" aria-hidden="true"></span>
+            <svg class="flap-edge" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 0 L50 50 L0 100" fill="none" stroke="url(#flapGold)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+            </svg>
+          </div>
+          <div class="flap flap--right">
+            <span class="flap-shade" aria-hidden="true"></span>
+            <svg class="flap-edge" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M100 0 L50 50 L100 100" fill="none" stroke="url(#flapGold)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+            </svg>
           </div>
 
-          <div id="badge">
-            <div class="badge-scroll-label" aria-hidden="true">
-              <svg viewBox="0 0 260 120">
-                <defs><path id="scrollArc" d="M 18,82 A 112,112 0 0,1 242,82" fill="none" /></defs>
-                <path class="badge-scroll-orbit" d="M 18,82 A 112,112 0 0,1 242,82" />
-                <text text-anchor="middle">
-                  <textPath href="#scrollArc" startOffset="50%">SCROLL TO OPEN</textPath>
-                </text>
-              </svg>
-            </div>
-            <div class="badge-notch"></div>
-            <div class="badge-ring-outer"></div>
-            <div class="badge-ring-inner"></div>
-            <span class="mono">M &amp; L</span>
-          </div>
+        </div>
+
+        <!-- the artwork rides the side flaps but is never clipped by them -->
+        <div class="door-layer door-layer--right" aria-hidden="true">
+          <img class="door-art" src="images/door-right-clean.png" alt="" />
+        </div>
+        <div class="door-layer door-layer--left">
+          <img class="door-art" src="images/door-left-clean.png" alt="White roses and greenery" />
+          <img class="door-seal" src="images/Seal.png" alt="Gold wax seal monogrammed M and L" />
         </div>
       </div>
     </div>
@@ -88,54 +223,123 @@
   <!-- ══════════════════ MAIN CONTENT ══════════════════ -->
   <div class="main-content" id="mainContent">
 
-    <!-- 3D cake -->
-    <div class="cake-stage">
-      <div class="cake-illustration" id="cakeIllustration">
-        <div id="cake3dContainer"></div>
-      </div>
-    </div>
-
-    <!-- Invitation + countdown -->
+    <!-- Invitation + cake + countdown -->
     <section class="invitation-countdown" id="invitationSection">
-      <p class="invitation-copy">
-        Together with their families,<br />
-        <strong>Mikias Derej</strong> &amp; <strong>Lidiya Dagne</strong><br />
-        request the pleasure of your company<br />
-        as they exchange vows and celebrate their union.
-      </p>
-      <div class="countdown-wrapper" id="countdown">
-        <div class="countdown-unit"><span class="countdown-num" data-cd="days">00</span><span class="countdown-label">Days</span></div>
-        <div class="countdown-unit"><span class="countdown-num" data-cd="hours">00</span><span class="countdown-label">Hours</span></div>
-        <div class="countdown-unit"><span class="countdown-num" data-cd="minutes">00</span><span class="countdown-label">Minutes</span></div>
-        <div class="countdown-unit"><span class="countdown-num" data-cd="seconds">00</span><span class="countdown-label">Seconds</span></div>
+      <div class="invite-grid">
+        <div class="cake-stage">
+          <div class="cake-illustration" id="cakeIllustration">
+            <img src="images/Cake.png" alt="Three-tier white wedding cake with roses and a gold ring topper on a gold stand" />
+          </div>
+        </div>
+
+        <div class="invite-copy">
+          <p class="invite-kicker"><i></i>Save the date<i></i></p>
+
+          <h2 class="invite-names">Mikias <span class="amp">&amp;</span> Lidiya</h2>
+
+          <h3 class="invite-venue" data-venue-name>Lideta Mekane Yesus Church</h3>
+
+          <div class="calendar" id="weddingCalendar">
+            <p class="cal-month"><i></i><span data-cal-month>November 08 2026</span><i></i></p>
+            <div class="cal-week" aria-hidden="true">
+              <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+            </div>
+            <div class="cal-grid" data-cal-grid></div>
+
+            <!-- phones get the same curl, drawn upright so the little heart
+                 reads the same way it does on desktop -->
+            <svg class="cal-connector" viewBox="0 0 80 170" aria-hidden="true">
+              <path class="conn-line" d="M10 0 C 20 24, 31 46, 27 78 C 24 106, 15 122, 11 133"
+                fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                vector-effect="non-scaling-stroke" />
+              <path class="conn-heart" d="M11 152 C 11 152, 2 145, 2 139.5
+                C 2 135.5, 6 134, 8.6 136.2 C 9.8 137.2, 11 138.8, 11 139.8
+                C 11 138.8, 12.2 137.2, 13.4 136.2 C 16 134, 20 135.5, 20 139.5
+                C 20 145, 11 152, 11 152 Z"
+                fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"
+                vector-effect="non-scaling-stroke" />
+              <path class="conn-tail" d="M4 146 C 1 150, 0 156, 1 162"
+                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                vector-effect="non-scaling-stroke" />
+            </svg>
+          </div>
+
+          <div class="countdown-wrapper" id="countdown">
+                <div class="countdown-unit"><span class="countdown-num" data-cd="days">00</span><span class="countdown-label">Days</span></div>
+                <div class="countdown-unit"><span class="countdown-num" data-cd="hours">00</span><span class="countdown-label">Hours</span></div>
+                <div class="countdown-unit"><span class="countdown-num" data-cd="minutes">00</span><span class="countdown-label">Minutes</span></div>
+                <div class="countdown-unit"><span class="countdown-num" data-cd="seconds">00</span><span class="countdown-label">Seconds</span></div>
+          </div>
+
+          <p class="invite-request">
+            Together with their families,<br />
+            request the pleasure of your company<br />
+            as they exchange vows and celebrate their union.
+          </p>
+
+          <button class="story-cta" id="storyToggle" type="button" aria-expanded="false" aria-controls="loveStory">
+            View our story
+            <svg viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6h26M21 1.5L26.5 6 21 10.5" /></svg>
+          </button>
+
+          <span class="invite-close" aria-hidden="true">
+            <i></i>
+            <svg viewBox="0 0 16 15"><path d="M8 13.6 C8 13.6 1.2 9.2 1.2 5.4 C1.2 2.9 3.2 1.5 5 2.1 C6.2 2.5 7.5 3.7 8 4.9 C8.5 3.7 9.8 2.5 11 2.1 C12.8 1.5 14.8 2.9 14.8 5.4 C14.8 9.2 8 13.6 8 13.6 Z" /></svg>
+            <i></i>
+          </span>
+        </div>
       </div>
+
     </section>
 
     <!-- Love story -->
     <section class="love-story" id="loveStory">
-      <div class="section-header"><h2>Our Love Story</h2><span class="ornament-line"></span></div>
-      <div class="timeline">
-        <div class="timeline-item" data-animate>
-          <div class="tl-year">How it began</div>
-          <div class="tl-title">A Hello on Telegram</div>
-          <p class="tl-text">It started with a single message. One hello turned into long conversations that
-            ran late into the night, and somewhere between the typing and the waiting, a name on a
-            screen became the best part of the day.</p>
-        </div>
-        <div class="timeline-item" data-animate>
-          <div class="tl-year">Two years together</div>
-          <div class="tl-title">From Strangers to Sure</div>
-          <p class="tl-text">Two years of shared meals, long walks and ordinary afternoons that never felt
-            ordinary. We learned each other&rsquo;s stories, habits and dreams — and curiosity quietly
-            grew into certainty.</p>
-        </div>
-        <div class="timeline-item" data-animate>
-          <div class="tl-year">The decision</div>
-          <div class="tl-title">Two Families, One Promise</div>
-          <p class="tl-text">We brought our families together, and with their blessing we chose the rest of
-            our lives. What began with one message now becomes a marriage — and we would love for you
-            to be there when it does.</p>
-        </div>
+      <header class="story-header">
+        <p class="story-kicker"><i></i>Our<i></i></p>
+        <h2>Love Story</h2>
+        <span class="story-rings" aria-hidden="true">
+          <i></i>
+          <svg viewBox="0 0 44 24"><circle cx="16" cy="12" r="8" /><circle cx="28" cy="12" r="8" /></svg>
+          <i></i>
+        </span>
+      </header>
+
+      <div class="story-timeline">
+        <article class="story-item" data-animate>
+          <span class="story-node" aria-hidden="true"></span>
+          <figure class="story-photo">
+            <img src="images/story-1.jpg" alt="Mikias and Lidiya in the early days of talking" loading="lazy" data-story-photo />
+          </figure>
+          <div class="story-text">
+            <p class="story-eyebrow">How it began</p>
+            <h3 class="story-title">A Hello on Telegram</h3>
+            <p class="story-copy">It started with a single message. One hello turned into long conversations that ran late into the night, and somewhere between the typing and the waiting, a name on a screen became the best part of the day.</p>
+          </div>
+        </article>
+
+        <article class="story-item" data-animate>
+          <span class="story-node" aria-hidden="true"></span>
+          <figure class="story-photo">
+            <img src="images/story-2.jpg" alt="Mikias and Lidiya walking together" loading="lazy" data-story-photo />
+          </figure>
+          <div class="story-text">
+            <p class="story-eyebrow">Two years together</p>
+            <h3 class="story-title">From Strangers to Sure</h3>
+            <p class="story-copy">Two years of shared meals, long walks and ordinary afternoons that never felt ordinary. We learned each other&rsquo;s stories, habits and dreams — and curiosity quietly grew into certainty.</p>
+          </div>
+        </article>
+
+        <article class="story-item" data-animate>
+          <span class="story-node" aria-hidden="true"></span>
+          <figure class="story-photo">
+            <img src="images/story-3.jpg" alt="Mikias placing the ring on Lidiya&rsquo;s hand" loading="lazy" data-story-photo />
+          </figure>
+          <div class="story-text">
+            <p class="story-eyebrow">The decision</p>
+            <h3 class="story-title">Two Families, One Promise</h3>
+            <p class="story-copy">We brought our families together, and with their blessing we chose the rest of our lives. What began with one message now becomes a marriage — and we would love for you to be there when it does.</p>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -240,102 +444,249 @@
 
     <!-- Venue & details -->
     <section class="event-details" id="eventDetails">
-      <div class="section-header"><h2>Venue &amp; Details</h2><span class="ornament-line"></span></div>
+      <header class="story-header">
+        <p class="story-kicker"><i></i>Venue &amp; Details<i></i></p>
+        <h2>Venue &amp; Details</h2>
+        <p class="section-tagline">Here&rsquo;s everything you need to know for the big day.</p>
+        <span class="story-rings" aria-hidden="true">
+          <i></i>
+          <svg viewBox="0 0 44 24"><circle cx="16" cy="12" r="8" /><circle cx="28" cy="12" r="8" /></svg>
+          <i></i>
+        </span>
+      </header>
+
       <div class="details-grid">
-        <div class="detail-card">
-          <h4>Location</h4>
-          <p><span data-venue-name>Lideta Mekane Yesus Church</span><br />
-            <span class="amharic">ልደታ መካነ ኢየሱስ ቤ/ክ</span><br />
-            Addis Ababa, Ethiopia</p>
-        </div>
-        <div class="detail-card">
-          <h4>Date &amp; Time</h4>
-          <p><span class="amharic">እሁድ, ጥቅምት 29 2019 ኢ.አ</span><br />
-            <span data-date-long>Sunday, November 8, 2026</span> G.C<br />
-            <span class="amharic">8:00 ሰዓት በኢትዮጵያ አቆጣጠር</span> &middot; 2:00 PM</p>
-        </div>
+        <article class="detail-card">
+          <span class="detail-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 22s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12z" /><circle cx="12" cy="10" r="2.6" /></svg>
+          </span>
+          <div class="detail-body">
+            <p class="detail-kicker">Location</p>
+            <h3 class="detail-title" data-venue-name>Lideta Mekane Yesus Church</h3>
+            <p class="detail-sub amharic">ልደታ መካነ ኢየሱስ ቤ/ክ</p>
+            <p class="detail-line">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12z" /><circle cx="12" cy="10" r="2.6" /></svg>
+              Addis Ababa, Ethiopia
+            </p>
+          </div>
+        </article>
+
+        <article class="detail-card">
+          <span class="detail-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M8 3v4M16 3v4M3 10h18" /></svg>
+          </span>
+          <div class="detail-body">
+            <p class="detail-kicker">Date &amp; Time</p>
+            <h3 class="detail-title" data-date-long>Sunday, November 8, 2026</h3>
+            <p class="detail-sub amharic">እሁድ, ጥቅምት 29 2019 ኢ.አ</p>
+            <p class="detail-line">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5.4l3.4 2" /></svg>
+              <span class="amharic">8:00 ሰዓት በኢትዮጵያ አቆጣጠር</span>
+              <span class="detail-dot">&middot;</span> 2:00 PM
+            </p>
+          </div>
+        </article>
       </div>
 
-      <div class="map-area" id="mapArea" role="button" tabindex="0" aria-label="Open venue in Google Maps">
-        <div class="map-pin">
-          <svg viewBox="0 0 44 56" width="36" height="46" aria-hidden="true">
-            <path d="M22 0C10 0 0 9.5 0 22c0 16 22 34 22 34s22-18 22-34C44 9.5 34 0 22 0z" fill="#bf8f38" stroke="#8b6f3a" stroke-width="2" />
-            <circle cx="22" cy="20" r="8" fill="white" />
-          </svg>
+      <div class="map-panel">
+        <div class="map-frame">
+          <iframe id="venueMap" title="Map of Lideta Mekane Yesus Church" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+            src="https://www.google.com/maps?q=Lideta%20Mekane%20Yesus%20Church%2C%20Addis%20Ababa%2C%20Ethiopia&output=embed"></iframe>
         </div>
-        <div class="map-address-overlay" data-venue-name>Lideta Mekane Yesus Church</div>
+        <div class="map-side">
+          <span class="map-side-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 22s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12z" /><circle cx="12" cy="10" r="2.6" /></svg>
+          </span>
+          <p class="detail-kicker">Get directions</p>
+          <p class="map-side-copy">
+            Find the venue easily on Google Maps and get step-by-step directions to
+            <span data-venue-name>Lideta Mekane Yesus Church</span>.
+          </p>
+          <a href="#" class="btn btn-outline" data-maps-link target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5" /><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" /></svg>
+            Open in Google Maps
+          </a>
+        </div>
       </div>
 
       <div class="action-buttons">
-        <a href="#" class="btn btn-primary" id="mapsLink" target="_blank" rel="noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><circle cx="12" cy="10" r="4" /><path d="M12 2v4M12 14v8M2 10h4M18 10h4" /></svg>
+        <a href="#" class="btn btn-primary" id="mapsLink" data-maps-link target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><path d="M12 22s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12z" /><circle cx="12" cy="10" r="2.4" /></svg>
           Open in Maps
         </a>
         <a href="#" class="btn btn-outline" id="calendarLink" target="_blank" rel="noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
           Add to Calendar
         </a>
       </div>
     </section>
 
-    <!-- Gift registry -->
-    <section class="gift-registry" id="giftRegistry">
-      <div class="gift-heading">
-        <div class="section-header"><h2>Gift Registry</h2></div>
-        <div class="gift-ring-stage" data-animate aria-hidden="true">
-          <svg class="wedding-ring wedding-ring-left" viewBox="0 0 120 120">
-            <ellipse cx="60" cy="66" rx="34" ry="42" />
-            <ellipse class="ring-highlight" cx="54" cy="58" rx="25" ry="32" />
-            <path class="ring-shadow" d="M34 86c12 13 40 17 56-7" fill="none" />
-            <circle class="ring-gem" cx="60" cy="18" r="8" />
-          </svg>
-          <svg class="wedding-ring wedding-ring-right" viewBox="0 0 120 120">
-            <ellipse cx="60" cy="66" rx="34" ry="42" />
-            <ellipse class="ring-highlight" cx="66" cy="58" rx="25" ry="32" />
-            <path class="ring-shadow" d="M30 80c16 22 52 20 62-4" fill="none" />
-            <circle class="ring-gem" cx="60" cy="18" r="8" />
-          </svg>
-        </div>
-      </div>
+    <!-- Gift registry + RSVP -->
+    <section class="celebrate" id="celebrate">
+      <div class="celebrate-grid">
 
-      <div class="accordion" id="giftAccordion">
-        <div class="accordion-header" id="accordionHeader" role="button" tabindex="0" aria-expanded="false">
-          <span>Contribution</span><span class="accordion-arrow">&#9662;</span>
-        </div>
-        <div class="accordion-body">
-          <p class="accordion-copy">Your presence is the greatest gift. Should you wish to contribute, details are below.</p>
-          <button class="btn-iban" id="ibanToggle" type="button">Show IBAN</button>
-          <div class="iban-reveal-area" id="ibanArea">
-            FR76 3000 4000 0100 0000 1234 567<br />BIC: BNPAFRPPXXX
+        <!-- ── gift registry ── -->
+        <div class="panel" id="giftRegistry">
+          <header class="panel-header">
+            <p class="story-kicker"><i></i>With love<i></i></p>
+            <h2>Gift Registry</h2>
+            <span class="panel-ornament" aria-hidden="true">
+              <svg class="ornament-spray" viewBox="0 0 62 26" aria-hidden="true">
+              <path d="M58 16 C 44 10, 26 6, 6 8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" />
+              <use href="#leaf" transform="translate(50,13) rotate(128) scale(.3)" />
+              <use href="#leaf" transform="translate(43,11) rotate(238) scale(.3)" />
+              <use href="#leaf" transform="translate(34,9) rotate(126) scale(.28)" />
+              <use href="#leaf" transform="translate(26,8) rotate(236) scale(.28)" />
+              <use href="#leaf" transform="translate(17,7) rotate(124) scale(.25)" />
+              <use href="#leaf" transform="translate(10,7) rotate(234) scale(.25)" />
+            </svg>
+              <svg class="ornament-rings" viewBox="0 0 44 24" aria-hidden="true"><circle cx="16" cy="12" r="8" /><circle cx="28" cy="12" r="8" /></svg>
+              <svg class="ornament-spray ornament-spray--right" viewBox="0 0 62 26" aria-hidden="true">
+              <path d="M58 16 C 44 10, 26 6, 6 8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" />
+              <use href="#leaf" transform="translate(50,13) rotate(128) scale(.3)" />
+              <use href="#leaf" transform="translate(43,11) rotate(238) scale(.3)" />
+              <use href="#leaf" transform="translate(34,9) rotate(126) scale(.28)" />
+              <use href="#leaf" transform="translate(26,8) rotate(236) scale(.28)" />
+              <use href="#leaf" transform="translate(17,7) rotate(124) scale(.25)" />
+              <use href="#leaf" transform="translate(10,7) rotate(234) scale(.25)" />
+            </svg>
+            </span>
+            <p class="panel-tagline">Your presence is the greatest gift.<br />Should you wish to contribute, the details are here.</p>
+          </header>
+
+          <div class="panel-card">
+            <ul class="info-list">
+              <li class="info-row">
+                <span class="info-badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.7-7.5-10a4.3 4.3 0 0 1 7.5-2.8A4.3 4.3 0 0 1 19.5 11c0 5.3-7.5 10-7.5 10z" /></svg>
+                </span>
+                <div class="info-text">
+                  <p class="info-kicker">Your presence</p>
+                  <p class="info-body">Is the greatest gift we could ask for.</p>
+                </div>
+              </li>
+
+              <li class="info-row">
+                <span class="info-badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M3 10h18M7 15h4" /></svg>
+                </span>
+                <div class="info-text">
+                  <p class="info-kicker">Bank transfer</p>
+                  <p class="info-body">Account details for a direct transfer are below.</p>
+                  <button class="btn-iban" id="ibanToggle" type="button" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M3 10h18M7 15h4" /></svg>
+                    Show account details
+                  </button>
+                  <div class="iban-reveal-area" id="ibanArea">
+                    <span class="iban-line">FR76 3000 4000 0100 0000 1234 567</span>
+                    <span class="iban-line">BIC: BNPAFRPPXXX</span>
+                  </div>
+                </div>
+              </li>
+
+              <li class="info-row">
+                <span class="info-badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M3 21V10l9-7 9 7v11" /><path d="M9 21v-6h6v6" /></svg>
+                </span>
+                <div class="info-text">
+                  <p class="info-kicker">Thank you</p>
+                  <p class="info-body">Every contribution goes towards the home we are building together.</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- RSVP -->
-    <section class="rsvp-section" id="rsvpSection">
-      <div class="section-header"><h2>RSVP</h2><span class="ornament-line"></span></div>
-      <p class="rsvp-deadline">Kindly respond by <span data-rsvp-deadline>November 12, 2026</span></p>
+        <!-- ── RSVP ── -->
+        <div class="panel" id="rsvpSection">
+          <header class="panel-header">
+            <p class="story-kicker"><i></i>Kindly<i></i></p>
+            <h2>RSVP</h2>
+            <span class="panel-ornament" aria-hidden="true">
+              <svg class="ornament-spray" viewBox="0 0 62 26" aria-hidden="true">
+              <path d="M58 16 C 44 10, 26 6, 6 8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" />
+              <use href="#leaf" transform="translate(50,13) rotate(128) scale(.3)" />
+              <use href="#leaf" transform="translate(43,11) rotate(238) scale(.3)" />
+              <use href="#leaf" transform="translate(34,9) rotate(126) scale(.28)" />
+              <use href="#leaf" transform="translate(26,8) rotate(236) scale(.28)" />
+              <use href="#leaf" transform="translate(17,7) rotate(124) scale(.25)" />
+              <use href="#leaf" transform="translate(10,7) rotate(234) scale(.25)" />
+            </svg>
+              <svg class="ornament-rings" viewBox="0 0 44 24" aria-hidden="true"><circle cx="16" cy="12" r="8" /><circle cx="28" cy="12" r="8" /></svg>
+              <svg class="ornament-spray ornament-spray--right" viewBox="0 0 62 26" aria-hidden="true">
+              <path d="M58 16 C 44 10, 26 6, 6 8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" />
+              <use href="#leaf" transform="translate(50,13) rotate(128) scale(.3)" />
+              <use href="#leaf" transform="translate(43,11) rotate(238) scale(.3)" />
+              <use href="#leaf" transform="translate(34,9) rotate(126) scale(.28)" />
+              <use href="#leaf" transform="translate(26,8) rotate(236) scale(.28)" />
+              <use href="#leaf" transform="translate(17,7) rotate(124) scale(.25)" />
+              <use href="#leaf" transform="translate(10,7) rotate(234) scale(.25)" />
+            </svg>
+            </span>
+            <p class="panel-tagline">Your presence means the world to us.<br />Please let us know if you&rsquo;ll be joining us.</p>
+            <p class="rsvp-deadline">Kindly respond by <span data-rsvp-deadline>November 12, 2026</span></p>
+          </header>
 
-      <form class="rsvp-form" id="rsvpForm" novalidate>
-        <div class="form-group">
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" name="fullName" placeholder="Your full name" required />
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number (optional)</label>
-          <input type="tel" id="phone" name="phone" placeholder="Your phone number" />
-        </div>
-        <div class="form-group">
-          <label>Attendance</label>
-          <div class="radio-group">
-            <label class="radio-option"><input type="radio" name="attendance" value="accept" checked />Joyfully Accept</label>
-            <label class="radio-option"><input type="radio" name="attendance" value="decline" />Regretfully Decline</label>
+          <div class="panel-card">
+            <form class="rsvp-form" id="rsvpForm" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="fullName">Full Name <b>*</b></label>
+                <input type="text" id="fullName" name="fullName" placeholder="Your full name" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="phone">Phone Number (optional)</label>
+                <input type="tel" id="phone" name="phone" placeholder="Your phone number" />
+              </div>
+
+              <div class="form-group">
+                <span class="form-label">Attendance <b>*</b></span>
+                <div class="attend-group">
+                  <label class="attend-option">
+                    <input type="radio" name="attendance" value="accept" checked />
+                    <span class="attend-dot" aria-hidden="true"></span>
+                    <svg class="attend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2" /><path d="M3 20c0-3.2 2.7-5.2 6-5.2s6 2 6 5.2" /><path d="M16 5.6a3.2 3.2 0 0 1 0 4.8M18.4 14.6c1.8.8 3.1 2.6 3.1 5.4" /></svg>
+                    <span class="attend-label">Joyfully Accept</span>
+                  </label>
+                  <label class="attend-option">
+                    <input type="radio" name="attendance" value="decline" />
+                    <span class="attend-dot" aria-hidden="true"></span>
+                    <svg class="attend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2" /><path d="M3 20c0-3.2 2.7-5.2 6-5.2s6 2 6 5.2" /><path d="M17 7l4 4M21 7l-4 4" /></svg>
+                    <span class="attend-label">Regretfully Decline</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="guests">Additional guests (optional)</label>
+                <span class="select-wrap">
+                  <select id="guests" name="guests">
+                    <option value="" selected>Select number of guests</option>
+                    <option value="0">Just me</option>
+                    <option value="1">1 guest</option>
+                    <option value="2">2 guests</option>
+                    <option value="3">3 guests</option>
+                    <option value="4">4 or more</option>
+                  </select>
+                </span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="message">Message (optional)</label>
+                <textarea id="message" name="message" rows="4" placeholder="A short message for the couple..."></textarea>
+              </div>
+
+              <button type="submit" class="btn-submit">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 2.5L11 13M21.5 2.5l-6.8 19-3.7-8.5L2.5 9.3z" /></svg>
+                Send RSVP
+              </button>
+              <p class="form-feedback" id="formFeedback"></p>
+            </form>
           </div>
         </div>
-        <button type="submit" class="btn-submit">Send Response</button>
-        <p class="form-feedback" id="formFeedback"></p>
-      </form>
+
+      </div>
     </section>
 
     <footer class="footer">
@@ -345,8 +696,6 @@
 
   <canvas id="confetti-canvas"></canvas>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
-  <script src="js/cake3d.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=5"></script>
 </body>
 </html>

@@ -23,7 +23,8 @@
 
     var weddingDate = new Date(document.body.dataset.weddingDate || "2026-12-12T16:30:00");
     var venueQuery = document.body.dataset.venueQuery || "";
-    var coupleNames = (document.getElementById("rn").textContent || "Wedding").replace(/\s+/g, " ").trim();
+    var nameEl = document.querySelector("[data-couple-names]") || document.getElementById("rn");
+    var coupleNames = ((nameEl && nameEl.textContent) || "Wedding").replace(/\s+/g, " ").trim();
 
     /* ── confetti ─────────────────────────────────────── */
     var canvas = document.getElementById("confetti-canvas");
@@ -78,15 +79,48 @@
 
     /* ── scroll-driven envelope ───────────────────────── */
     var driver = document.getElementById("sd");
-    var flapGroup = document.getElementById("flap-group");
-    var badge = document.getElementById("badge");
+    var flapTop = document.querySelector(".flap--top");
+    var flapBottom = document.querySelector(".flap--bottom");
+    var flapLeft = document.querySelector(".flap--left");
+    var flapRight = document.querySelector(".flap--right");
+    var flapShades = $$(".flap-shade");
+    var artLeft = document.querySelector(".door-layer--left");
+    var artRight = document.querySelector(".door-layer--right");
+    var crest = document.querySelector(".reveal-crest");
     var rp = document.getElementById("rp");
     var rn = document.getElementById("rn");
     var rd = document.getElementById("rd");
     var bg = document.getElementById("bg");
     var bgParallax = document.getElementById("bg-parallax-layer");
-    var stage = document.getElementById("stage");
     var cake = document.getElementById("cakeIllustration");
+
+    /* ── the couple's names, traced on as if written ─────────────────── */
+    var pens = $$(".cover-names .pen");
+    var namesWritten = false;
+    pens.forEach(function (pen) {
+      var len = pen.getTotalLength();
+      pen.style.strokeDasharray = len;
+      pen.style.strokeDashoffset = len;
+      pen.dataset.len = len;
+    });
+    function writeNames() {
+      if (namesWritten) return;
+      namesWritten = true;
+      pens.forEach(function (pen, i) {
+        pen.style.transitionDelay = (i * 1.15) + "s";
+        pen.style.strokeDashoffset = "0";
+      });
+    }
+    // the names must never be left hidden: if the scroll cue has not fired by
+    // the time the cover has been on screen a while, write them anyway
+    if (pens.length) {
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        pens.forEach(function (pen) { pen.style.transition = "none"; });
+        writeNames();
+      } else {
+        setTimeout(writeNames, 6000);
+      }
+    }
 
     function render() {
       if (!driver) return;
@@ -94,8 +128,30 @@
       var total = driver.offsetHeight - window.innerHeight;
       var p = clamp(-rect.top / Math.max(total, 1), 0, 1);
 
+      // all four flaps peel back from the middle, like an envelope opening
       var flapT = easeInOutCubic(phase(p, 0.01, 0.58));
-      if (flapGroup) flapGroup.style.transform = "translateY(" + flapT * 6 + "px) rotateX(" + flapT * -176 + "deg)";
+      var leftTurn = "rotateY(" + flapT * -104 + "deg) translateZ(" + flapT * 10 + "px)";
+      var rightTurn = "rotateY(" + flapT * 104 + "deg) translateZ(" + flapT * 10 + "px)";
+      if (flapTop) flapTop.style.transform = "rotateX(" + flapT * 104 + "deg) translateZ(" + flapT * 10 + "px)";
+      if (flapBottom) flapBottom.style.transform = "rotateX(" + flapT * -104 + "deg) translateZ(" + flapT * 10 + "px)";
+      if (flapLeft) flapLeft.style.transform = leftTurn;
+      if (flapRight) flapRight.style.transform = rightTurn;
+      // the crest stays with the flaps instead of fading: each half slides out
+      // past the edge of the screen, riding 30px forward so the flaps' own
+      // translateZ can never paint over it
+      var partT = easeInOutCubic(phase(p, 0.02, 0.62));
+      if (artLeft) {
+        artLeft.style.transform = "translateZ(30px) translateX(" + partT * -68 + "%) scale(" + (1 - partT * 0.06) + ")";
+        artLeft.style.opacity = "1";
+      }
+      if (artRight) {
+        artRight.style.transform = "translateZ(30px) translateX(" + partT * 68 + "%) scale(" + (1 - partT * 0.06) + ")";
+        artRight.style.opacity = "1";
+      }
+      flapShades.forEach(function (el) { el.style.opacity = String(Math.min(1, flapT * 1.35)); });
+
+      // the laurel grows once the envelope is far enough open to see it
+      if (crest) crest.classList.toggle("is-grown", flapT > 0.45);
 
       if (flapT > 0.96 && !confettiFired) {
         confettiFired = true;
@@ -103,23 +159,14 @@
       }
       if (flapT < 0.12) confettiFired = false;
 
-      if (badge) {
-        var peel = phase(p, 0.18, 0.44);
-        var peelEased = 1 - Math.pow(1 - peel, 2);
-        var opacity = 1 - peelEased;
-        badge.style.opacity = String(Math.max(0, opacity));
-        badge.style.transform =
-          "translateX(-50%) translateY(" + peelEased * -30 + "px) rotateX(" + peelEased * -45 +
-          "deg) rotateZ(" + peelEased * 8 + "deg) scale(" + (1 + peelEased * 0.08) + ")";
-        badge.style.pointerEvents = opacity > 0.15 ? "auto" : "none";
-      }
-
       var preT = easeOut(phase(p, 0.32, 0.58));
       var nameT = easeOut(phase(p, 0.40, 0.68));
       var dateT = easeOut(phase(p, 0.48, 0.76));
 
       if (rp) { rp.style.opacity = String(preT); rp.style.transform = "translateY(" + (1 - preT) * 22 + "px)"; }
       if (rn) { rn.style.opacity = String(nameT); rn.style.transform = "translateY(" + (1 - nameT) * 36 + "px) scale(" + (0.94 + nameT * 0.06) + ")"; }
+      // the names write themselves on as they fade in, not before
+      if (nameT > 0.06) writeNames();
       if (rd) { rd.style.opacity = String(dateT); rd.style.transform = "translateY(" + (1 - dateT) * 20 + "px)"; }
 
       if (cake) {
@@ -131,12 +178,51 @@
       var bgShift = p * -42;
       if (bg) bg.style.transform = "translateY(" + bgShift + "px)";
       if (bgParallax) bgParallax.style.transform = "translateY(" + bgShift * 0.55 + "px) scale(" + (1 + p * 0.04) + ")";
-      if (stage) stage.style.opacity = String(1 - phase(p, 0.74, 0.94));
     }
 
     window.addEventListener("scroll", render, { passive: true });
     window.addEventListener("resize", render);
     render();
+
+    /* ── love story: revealed on request, then plays itself ───────────── */
+    var storyToggle = document.getElementById("storyToggle");
+    var loveStory = document.getElementById("loveStory");
+    if (storyToggle && loveStory) {
+      storyToggle.addEventListener("click", function () {
+        loveStory.classList.add("is-open");
+        storyToggle.classList.add("is-done");
+        storyToggle.setAttribute("aria-expanded", "true");
+
+        var steps = $$("#loveStory .story-item");
+        var program = document.getElementById("dayProgram");
+        var timers = [];
+        var STEP = 2600;
+
+        // any deliberate scroll hands control back to the reader
+        function stop() {
+          timers.forEach(clearTimeout);
+          window.removeEventListener("wheel", stop);
+          window.removeEventListener("touchstart", stop);
+          window.removeEventListener("keydown", stop);
+        }
+        window.addEventListener("wheel", stop, { passive: true });
+        window.addEventListener("touchstart", stop, { passive: true });
+        window.addEventListener("keydown", stop);
+
+        steps.forEach(function (step, i) {
+          timers.push(setTimeout(function () {
+            step.classList.add("visible");
+            step.scrollIntoView({ behavior: "smooth", block: "center" });
+          }, 420 + i * STEP));
+        });
+
+        // ends on the programme and leaves the reader there
+        timers.push(setTimeout(function () {
+          if (program) program.scrollIntoView({ behavior: "smooth", block: "start" });
+          stop();
+        }, 420 + steps.length * STEP));
+      });
+    }
 
     /* ── countdown ────────────────────────────────────── */
     var cdEls = {
@@ -165,6 +251,74 @@
 
     $$("[data-date-long]").forEach(function (el) { el.textContent = longDate; });
     $$("[data-rsvp-deadline]").forEach(function (el) { el.textContent = deadline; });
+    var dotted = weddingDate.toLocaleDateString("en-GB", { timeZone: VENUE_TZ, day: "2-digit", month: "2-digit", year: "numeric" }).replace(/\//g, ".");
+    $$("[data-date-dotted]").forEach(function (el) { el.textContent = dotted; });
+    var dotSep = longDate.replace(/,\s*/g, " · ");
+    $$("[data-date-dotsep]").forEach(function (el) { el.textContent = dotSep; });
+
+
+    /* ── wedding-month calendar ───────────────────────── */
+    var calGrid = $("[data-cal-grid]");
+    if (calGrid) {
+      // read the date in the venue's own time zone so the highlighted day is
+      // the wedding day there, whatever the guest's device is set to
+      var parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: VENUE_TZ, year: "numeric", month: "numeric", day: "numeric"
+      }).formatToParts(weddingDate).reduce(function (acc, part) {
+        acc[part.type] = part.value; return acc;
+      }, {});
+      var calYear = Number(parts.year), calMonth = Number(parts.month) - 1, calDay = Number(parts.day);
+
+      var first = new Date(Date.UTC(calYear, calMonth, 1));
+      var startDow = first.getUTCDay();
+      var daysInMonth = new Date(Date.UTC(calYear, calMonth + 1, 0)).getUTCDate();
+
+      var monthName = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", month: "long" }).format(first);
+      var dayPadded = String(calDay).padStart(2, "0");
+      $$("[data-cal-month]").forEach(function (el) {
+        el.textContent = monthName + " " + dayPadded + " " + calYear;
+      });
+
+      var cells = "";
+      for (var b = 0; b < startDow; b++) cells += '<span class="cal-day is-blank"></span>';
+      for (var d = 1; d <= daysInMonth; d++) {
+        if (d === calDay) {
+          cells += '<span class="cal-day is-wedding" aria-current="date">' +
+            '<svg class="cal-flourish" viewBox="0 0 130 40" aria-hidden="true">' +
+            '<path class="curl-line" d="M128 24 C 110 34, 86 35, 68 28 C 58 24, 52 19, 46 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
+            '<path class="curl-heart" d="M44 14 C 40 8, 32 8, 30 13 C 28 8, 20 8, 18 14 C 16 21, 26 27, 31 31 C 36 27, 46 21, 44 14 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>' +
+            '<path class="curl-tail" d="M17 17 C 12 20, 6 22, 2 21" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+            '</svg>' +
+            '<svg class="cal-heart" viewBox="0 0 32 30" aria-hidden="true"><path d="M16 28.5S2.5 19.6 2.5 11.2C2.5 6.3 6.2 3 10.2 3c2.6 0 4.9 1.5 5.8 3.8C16.9 4.5 19.2 3 21.8 3c4 0 7.7 3.3 7.7 8.2 0 8.4-13.5 17.3-13.5 17.3z"/></svg>' +
+            '<b>' + d + '</b></span>';
+        } else {
+          cells += '<span class="cal-day">' + d + '</span>';
+        }
+      }
+      calGrid.innerHTML = cells;
+
+      // on phones a curl hangs from the heart cell down to the counter, so the
+      // connector is placed against the cell's measured position
+      var cal = document.getElementById("weddingCalendar");
+      var connector = cal && cal.querySelector(".cal-connector");
+      function placeConnector() {
+        var cell = cal.querySelector(".cal-day.is-wedding");
+        if (!cell || !connector) return;
+        var c = cell.getBoundingClientRect(), box = cal.getBoundingClientRect();
+        // SVG elements have no offsetWidth, so measure the box instead, and keep
+        // the curl from hanging off the left edge of the calendar
+        // the curl starts at 10/80 across its own viewBox, so line that point up
+        // with the middle of the heart cell and let it begin right at its edge
+        var w = connector.getBoundingClientRect().width || 0;
+        var left = Math.max(0, Math.round(c.left - box.left + c.width * 0.5 - w * 0.125));
+        connector.style.setProperty("--conn-left", left + "px");
+        connector.style.setProperty("--conn-top", Math.round(c.bottom - box.top - 8) + "px");
+      }
+      if (connector) {
+        placeConnector();
+        window.addEventListener("resize", placeConnector);
+      }
+    }
 
     /* ── scroll reveal ────────────────────────────────── */
     var observer = new IntersectionObserver(function (entries) {
@@ -178,21 +332,25 @@
     }, { threshold: 0.15 });
     $$("[data-animate]").forEach(function (el) { observer.observe(el); });
 
+    /* ── story photos: show a placeholder until a file is dropped in ──── */
+    $$("[data-story-photo]").forEach(function (img) {
+      function markEmpty() { img.closest(".story-photo").classList.add("is-empty"); }
+      if (img.complete && img.naturalWidth === 0) { markEmpty(); }
+      img.addEventListener("error", markEmpty);
+    });
+
     /* ── maps & calendar links ────────────────────────── */
     var mapsUrl = document.body.dataset.venueMapUrl ||
       ("https://maps.google.com/?q=" + encodeURIComponent(venueQuery));
-    var mapsLink = document.getElementById("mapsLink");
-    if (mapsLink) {
-      mapsLink.href = mapsUrl;
-      mapsLink.addEventListener("click", function () { fireConfetti(); });
-    }
+    $$("[data-maps-link]").forEach(function (link) {
+      link.href = mapsUrl;
+      link.addEventListener("click", function () { fireConfetti(); });
+    });
 
-    var mapArea = document.getElementById("mapArea");
-    if (mapArea) {
-      mapArea.addEventListener("click", function () { window.open(mapsUrl, "_blank"); fireConfetti(); });
-      mapArea.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); mapArea.click(); }
-      });
+    // the embedded map follows the venue in <body data-venue-query>
+    var venueMap = document.getElementById("venueMap");
+    if (venueMap && venueQuery) {
+      venueMap.src = "https://www.google.com/maps?q=" + encodeURIComponent(venueQuery) + "&output=embed";
     }
 
     var calendarLink = document.getElementById("calendarLink");
@@ -207,29 +365,24 @@
       calendarLink.addEventListener("click", function () { fireConfetti(); });
     }
 
-    /* ── gift registry accordion ──────────────────────── */
-    var accordion = document.getElementById("giftAccordion");
-    var accordionHeader = document.getElementById("accordionHeader");
-    if (accordion && accordionHeader) {
-      function toggleAccordion() {
-        var willOpen = !accordion.classList.contains("open");
-        accordion.classList.toggle("open", willOpen);
-        accordionHeader.setAttribute("aria-expanded", String(willOpen));
-        if (willOpen) fireConfetti();
-      }
-      accordionHeader.addEventListener("click", toggleAccordion);
-      accordionHeader.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleAccordion(); }
-      });
-    }
-
     var ibanToggle = document.getElementById("ibanToggle");
     var ibanArea = document.getElementById("ibanArea");
     if (ibanToggle && ibanArea) {
+      var ibanLabel = ibanToggle.lastChild;
       ibanToggle.addEventListener("click", function () {
         var shown = ibanArea.classList.toggle("show");
-        ibanToggle.textContent = shown ? "Hide IBAN" : "Show IBAN";
+        ibanToggle.setAttribute("aria-expanded", String(shown));
+        ibanLabel.textContent = shown ? " Hide account details" : " Show account details";
+        if (shown) fireConfetti();
       });
+    }
+
+    /* ── guest count reads as a placeholder until one is chosen ──── */
+    var guests = document.getElementById("guests");
+    if (guests) {
+      function syncGuests() { guests.classList.toggle("is-empty", guests.value === ""); }
+      guests.addEventListener("change", syncGuests);
+      syncGuests();
     }
 
     /* ── RSVP form (local only) ───────────────────────── */
@@ -252,6 +405,8 @@
           name: name,
           phone: form.phone.value.trim(),
           attendance: form.querySelector('input[name="attendance"]:checked').value,
+          guests: form.guests.value,
+          message: form.message.value.trim(),
           at: new Date().toISOString()
         };
         try {
